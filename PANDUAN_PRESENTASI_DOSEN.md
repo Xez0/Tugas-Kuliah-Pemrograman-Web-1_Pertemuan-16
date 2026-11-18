@@ -38,7 +38,7 @@
 > **Pertanyaan Dosen :** *"Kapan kamu memakai Flexbox dan kapan memakai CSS Grid?"*
 * **Jawaban :**  
   > *"Saya menggunakan **CSS Grid** untuk tata letak 2 dimensi (baris dan kolom sekaligus), seperti pembagian layout utama `.reservation-grid` (kolom formulir 1.25fr dan kolom struk 1fr) serta form row multi-kolom (`repeat(2, 1fr)`).  
-  Sedangkan **Flexbox** saya gunakan untuk tata letak 1 dimensi (hanya baris ATAU kolom saja), seperti bilah navigasi header (`justify-content: space-between` untuk merapatkan logo di kiri dan nama mahasiswa di kanan), penyejajaran ikon SVG di dalam tombol, dan tumpukan vertikal pada rincian nota tagihan."*
+  Sedangkan **Flexbox** saya gunakan untuk tata letak 1 dimensi (hanya baris ATAU kolom saja), seperti bilah navigasi header (`justify-content: space-between` untuk merapatkan logo di kiri dan status terminal / tombol verifikasi di kanan), penyejajaran ikon SVG di dalam tombol, dan tumpukan vertikal pada rincian nota tagihan."*
 
 ### D. Rekayasa Checkbox Kustom & Saklar Switch
 > **Pertanyaan Dosen :** *"Bagaimana cara membuat checkbox fasilitas dan switch toggle tanpa plugin JavaScript?"*
