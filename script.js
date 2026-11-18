@@ -911,6 +911,8 @@
     const formAlert = document.getElementById("formAlert");
     const btnResetForm = document.getElementById("btnResetForm");
     const btnSaveToTable = document.getElementById("btnSaveToTable");
+    const btnPrintFolio = document.getElementById("btnPrintFolio");
+    const btnExportJson = document.getElementById("btnExportJson");
 
     // Referensi Elemen DOM Folio Tagihan
     const folioStatusStamp = document.getElementById("folioStatusStamp");
@@ -1034,6 +1036,7 @@
         folioGuaranteeStatus.textContent = "Menunggu Kalkulasi";
         folioInstallmentBox.classList.add("d-none");
         btnSaveToTable.disabled = true;
+        if (btnPrintFolio) btnPrintFolio.disabled = true;
         return;
       }
 
@@ -1072,6 +1075,7 @@
       }
 
       btnSaveToTable.disabled = false;
+      if (btnPrintFolio) btnPrintFolio.disabled = false;
     }
 
     /**
@@ -1276,6 +1280,31 @@
       displayFormAlert("", "");
       updateFolioDisplay(null);
     });
+
+    /**
+     * Event Listener Cetak Struk / Print Folio
+     */
+    if (btnPrintFolio) {
+      btnPrintFolio.addEventListener("click", function () {
+        if (!currentFolioCalculation) return;
+        window.print();
+      });
+    }
+
+    /**
+     * Event Listener Ekspor Data Reservasi ke Berkas JSON
+     */
+    if (btnExportJson) {
+      btnExportJson.addEventListener("click", function () {
+        const jsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(reservationsData, null, 2));
+        const dlAnchor = document.createElement("a");
+        dlAnchor.setAttribute("href", jsonStr);
+        dlAnchor.setAttribute("download", "reservasi_svarga_hotel_241011402572.json");
+        document.body.appendChild(dlAnchor);
+        dlAnchor.click();
+        dlAnchor.remove();
+      });
+    }
 
     /**
      * Event Listener Modal Audit Algoritma
