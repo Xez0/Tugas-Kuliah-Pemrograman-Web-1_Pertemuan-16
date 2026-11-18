@@ -14,7 +14,7 @@ Repositori resmi penugasan mata kuliah **Pemrograman Web 1 (Pertemuan 16)** pada
 - **Mata Kuliah :** Pemrograman Web 1
 - **Pertemuan :** 16 (Percabangan & Perulangan JavaScript)
 - **Topik Penugasan :** Sistem Reservasi Hotel & Kalkulasi Tagihan Tamu Berdasarkan Variasi NIM
-- **Pendekatan Desain :** Standar Rekayasa Frontend Anti-Slop (Tipografi Editorial *Newsreader* & *Plus Jakarta Sans*, Palet *Heritage Sandstone & Terracotta*, Angka Monospace Tabular)
+- **Pendekatan Desain :** Standar Rekayasa Antarmuka Bersih & Terstruktur (Tipografi Editorial *Newsreader* & *Plus Jakarta Sans*, Palet *Heritage Sandstone & Terracotta*, Angka Monospace Tabular)
 
 ---
 
@@ -149,7 +149,7 @@ Tugas-Kuliah-Pemrograman-Web-1_Pertemuan-16/
 ├── SPECIFICATION.md                # Spesifikasi teknis dan matriks kepatuhan penugasan
 ├── README.md                       # Laporan komprehensif penugasan akademik
 ├── index.html                      # Struktur semantik antarmuka aplikasi web
-├── style.css                       # Stylesheet sistem desain editorial anti-slop
+├── style.css                       # Stylesheet sistem desain antarmuka responsif
 ├── script.js                       # Logika kontrol keputusan, perulangan, dan manipulasi DOM
 ├── test_specs.js                   # Skrip pengujian otomatis unit & kepatuhan aturan NIM
 ├── generate_screenshots.py         # Skrip otomatisasi pengujian visual & tangkapan layar
@@ -193,4 +193,4 @@ Aplikasi web Sistem Reservasi Hotel Svarga Heritage telah berhasil dirancang dan
 - Menuntaskan tantangan perulangan **Menghitung Rata-rata Data** (Digit ke-3 Terakhir NIM = 5).
 - Menerapkan seluruh rumus kontrol keputusan (`if` 10 kondisi, `if...else` 2 blok, `if...else if...else` 5 kategori, `switch...case` 9 case + default).
 - Menerapkan seluruh algoritma perulangan (`for` 12 iterasi, `while` 4 iterasi, `do...while` 6 iterasi, `Array` &ge; 10 elemen).
-- Menerapkan prinsip desain antarmuka profesional bebas dari *AI-slop* dengan hierarki visual yang jelas, elegan, dan siap produksi.
+- Menerapkan prinsip desain antarmuka profesional yang bersih, rapi, dan terstruktur dengan hierarki visual yang jelas, elegan, dan siap produksi.
