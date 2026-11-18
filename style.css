@@ -5,36 +5,54 @@
    Prinsip     : Anti-Slop Discipline, Impeccable Craft, & Editorial Distinction
    ========================================================================== */
 
-/* --- 1. DESIGN TOKENS & CSS CUSTOM PROPERTIES --- */
+/* ==========================================================================
+   BAGIAN 1: DESIGN TOKENS & CSS CUSTOM PROPERTIES (:root)
+   ==========================================================================
+   PENJELASAN UNTUK DOSEN:
+   - Pseudo-class `:root` merepresentasikan elemen tertinggi di DOM (sama dengan <html>).
+   - Menempatkan variabel di `:root` membuat seluruh token desain bersifat GLOBAL
+     sehingga dapat diakses dan diwariskan (inherited) oleh seluruh elemen di halaman.
+   - Sintaks `--nama-variabel: nilai;` memungkinkan pemeliharaan kode (maintainability)
+     yang terpusat. Jika ingin mengganti warna aksen tema hotel, cukup ubah satu baris di sini.
+   - Variabel dipanggil menggunakan fungsi `var(--nama-variabel)`.
+   ========================================================================== */
 :root {
-  /* Permukaan & Latar Belakang (Heritage Warm Bone & Sandstone) */
-  --bg-canvas: #FBF9F5;
-  --bg-surface: #FFFFFF;
-  --bg-subtle: #F3EFEA;
-  --bg-muted: #ECE6DD;
-  --bg-card-header: #F7F4EE;
-  --bg-accent-tint: #FBF1EB;
-  --bg-folio: #FFFDF9;
+  /* --- PALET PERMUKAAN & LATAR BELAKANG ---
+     Mengusung tema 'Heritage Luxury': perpaduan warna pasir hangat (sandstone),
+     kertas gading (ivory), dan linen berbobot untuk kenyamanan mata tamu. */
+  --bg-canvas: #FBF9F5;       /* Warna dasar kanvas halaman (ivory hangat) */
+  --bg-surface: #FFFFFF;      /* Latar kartu utama (putih bersih berbobot) */
+  --bg-subtle: #F3EFEA;       /* Permukaan sekunder (sandstone lembut) */
+  --bg-muted: #ECE6DD;        /* Latar elemen pasif atau selang-seling */
+  --bg-card-header: #F7F4EE;  /* Latar khusus area kepala kartu (header card) */
+  --bg-accent-tint: #FBF1EB;  /* Tint sangat lembut untuk sorotan pilihan aktif */
+  --bg-folio: #FFFDF9;        /* Latar nota struk menyerupai kertas kwitansi hotel */
 
-  /* Garis Pembatas (Subtle Hairline Borders) */
-  --border-subtle: #E7E1D8;
-  --border-strong: #D2C8BA;
-  --border-dashed: #C7BCAB;
-  --border-focus: #9C4B27;
+  /* --- GARIS PEMBATAS (HAIRLINE BORDERS) ---
+     Berdasarkan standar anti-slop, pembatas menggunakan garis halus 1px bernuansa
+     netral agar memisahkan informasi tanpa menimbulkan polusi visual. */
+  --border-subtle: #E7E1D8;   /* Garis halus pembatas antar baris data */
+  --border-strong: #D2C8BA;   /* Garis pembatas kartu dan fieldset utama */
+  --border-dashed: #C7BCAB;   /* Garis putus-putus untuk perforasi struk nota */
+  --border-focus: #9C4B27;    /* Warna garis tepi saat input aktif difokuskan */
 
-  /* Peran Tipografi */
-  --text-primary: #181A1C;     /* Basalt Charcoal pekat */
-  --text-secondary: #4A5157;   /* Slate neutral berimbang */
-  --text-muted: #788089;       /* Keterangan meta pasif */
-  --text-inverse: #FFFFFF;
+  /* --- PERAN TIPOGRAFI & KONTRAS TEKS (WCAG AA) ---
+     Tingkat kontras warna teks diuji untuk kenyamanan baca jangka panjang. */
+  --text-primary: #181A1C;     /* Basalt pekat (rasio kontras > 12:1 pada putih) */
+  --text-secondary: #4A5157;   /* Warna teks informasi pendukung & deskripsi */
+  --text-muted: #788089;       /* Keterangan meta, placeholder, dan teks pasif */
+  --text-inverse: #FFFFFF;     /* Teks putih kontras tinggi di atas tombol aksen */
 
-  /* Aksen Utama (Terracotta & Warm Bronze) */
-  --accent-primary: #9C4B27;
-  --accent-hover: #833D1E;
-  --accent-active: #6E3218;
-  --accent-tint: rgba(156, 75, 39, 0.08);
+  /* --- AKSEN UTAMA: TERRACOTTA & WARM BRONZE ---
+     Mencerminkan warisan arsitektur bata merah candi dan kerajinan perunggu Nusantara. */
+  --accent-primary: #9C4B27;   /* Warna utama tombol CTA dan nominal total tagihan */
+  --accent-hover: #833D1E;     /* Warna tombol saat kursor melayang (hover state) */
+  --accent-active: #6E3218;    /* Warna tombol saat diklik aktif (active state) */
+  --accent-tint: rgba(156, 75, 39, 0.08); /* Transparansi aksen untuk seleksi */
 
-  /* Warna Semantik Status */
+  /* --- WARNA SEMANTIK STATUS ---
+     Digunakan untuk menyampaikan status operasional (sukses, peringatan, galat)
+     dengan saturasi yang tenang agar selaras dengan estetika hotel. */
   --status-success-bg: #EAF4EE;
   --status-success-text: #1B5E38;
   --status-success-border: #C8E6D3;
@@ -51,12 +69,17 @@
   --status-info-text: #23548F;
   --status-info-border: #C8DBF2;
 
-  /* Tipografi */
+  /* --- SISTEM FONT (TYPOGRAPHIC STACK) ---
+     1. Serif (Newsreader): Untuk tajuk/heading bernuansa perhotelan mewah.
+     2. Sans-serif (Plus Jakarta Sans): Tipografi modern berkecepatan baca tinggi untuk formulir.
+     3. Monospace (JetBrains Mono): Khusus angka nominal uang dan kode tiket. */
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace;
 
-  /* Skala Spasi (Grid 4px Berdisiplin) */
+  /* --- SKALA SPASI (DISIPLIN GRID KELIPATAN 4PX) ---
+     Seluruh margin, padding, dan gap diatur konsisten menggunakan kelipatan 4px
+     untuk menghasilkan ritme vertikal dan visual yang rapi secara matematis. */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -68,18 +91,21 @@
   --space-12: 48px;
   --space-16: 64px;
 
-  /* Radius Sudut (Nested Formula) */
+  /* --- RADIUS KELENGKUNGAN SUDUT (NESTED RADIUS FORMULA) ---
+     Rumus radius bersarang: radius elemen dalam = radius elemen luar - padding.
+     Menghindari sudut yang bertabrakan secara visual. */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-pill: 9999px;
 
-  /* Bayangan Netral & Halus (Bebas Efek Glow Berlebihan) */
+  /* --- BAYANGAN ALAMI (SUBTLE NEUTRAL SHADOWS) ---
+     Bebas dari efek glow ungu/neon murahan; menggunakan bayangan netral bernilai rendah. */
   --shadow-subtle: 0 1px 3px rgba(24, 26, 28, 0.04), 0 1px 2px rgba(24, 26, 28, 0.02);
   --shadow-card: 0 4px 12px rgba(24, 26, 28, 0.05), 0 1px 3px rgba(24, 26, 28, 0.03);
   --shadow-modal: 0 16px 36px rgba(24, 26, 28, 0.12), 0 4px 12px rgba(24, 26, 28, 0.06);
 
-  /* Transisi Halus */
+  /* --- WAKTU TRANSISI HALUS --- */
   --transition-fast: 150ms ease;
   --transition-normal: 220ms ease;
 }
