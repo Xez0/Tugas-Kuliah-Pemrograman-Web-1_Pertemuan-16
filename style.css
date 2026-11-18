@@ -256,15 +256,31 @@ body {
   gap: var(--space-4);
 }
 
-/* Badge Identitas Mahasiswa (Nama & NIM) */
+/* Badge Status Operasional Front Office */
+.system-status-badge,
 .student-badge {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+  gap: var(--space-2);
+  padding: 6px 14px;
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-pill); /* Bentuk kapsul lonjong sempurna */
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
+}
+
+.status-text {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
 }
 
 .student-avatar {
@@ -447,7 +463,8 @@ body {
   border: 1px solid var(--border-subtle);
 }
 
-/* Grid Indikator Variasi NIM */
+/* Grid Indikator Metrik Operasional Front Office */
+.operational-stats-grid,
 .nim-indicator-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1468,6 +1485,7 @@ body {
   color: var(--text-primary);
 }
 
+.footer-desc,
 .footer-student {
   font-size: 0.75rem;
   color: var(--text-secondary);
@@ -1537,6 +1555,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
   }
+  .operational-stats-grid,
   .nim-indicator-grid {
     width: 100%;
   }
