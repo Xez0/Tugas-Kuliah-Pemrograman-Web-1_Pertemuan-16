@@ -85,8 +85,8 @@ Penyesuaian nilai digit untuk perhitungan implementasi:
 
 ---
 
-## 5. Standar Rekayasa & Estetika Antarmuka (Anti-Slop Craft)
+## 5. Standar Rekayasa & Estetika Antarmuka
 Aplikasi dibangun mengacu pada standar rekayasa frontend profesional:
-1. **Frontend Design Distinction :** Tipografi editorial berkarakter perhotelan mewah (*Plus Jakarta Sans*, *Newsreader*, dan *JetBrains Mono*).
-2. **Impeccable Operability :** Interaksi formulir reaktif, kalkulasi instan tanpa reload, umpan balik visual yang jelas, dan penanganan status kosong (*empty states*).
-3. **Unslop Purity :** Skala spasi berbasis 4px/8px, palet warna bertema *Heritage Basalt, Walnut, dan Terracotta*, bebas dari gradien norak, ikon SVG inline standar, serta penyajian nominal angka rupiah yang presisi (*tabular figures*).
+1. **Tipografi Berkarakter :** Tipografi editorial berkarakter perhotelan mewah (*Plus Jakarta Sans*, *Newsreader*, dan *JetBrains Mono*).
+2. **Interaktivitas Reaktif :** Interaksi formulir reaktif, kalkulasi instan tanpa reload, umpan balik visual yang jelas, dan penanganan status kosong (*empty states*).
+3. **Penyajian Bersih & Presisi :** Skala spasi berbasis 4px/8px, palet warna bertema *Heritage Basalt, Walnut, dan Terracotta*, bebas dari gradien berlebihan, ikon SVG inline standar, serta penyajian nominal angka rupiah yang presisi (*tabular figures*).
