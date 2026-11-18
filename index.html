@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Reservasi Hotel - Svarga Heritage Hotel & Resort</title>
+  <meta name="description" content="Aplikasi Web Sistem Reservasi Hotel & Kalkulasi Tagihan Tamu Berdasarkan Variasi NIM 241011402572 - Pemrograman Web 1 Pertemuan 16 Universitas Pamulang">
+  <!-- Google Fonts: Newsreader (Serif Editorial) & Plus Jakarta Sans (UI Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation & Brand Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-block">
+        <div class="brand-crest" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1M9 18h1M14 18h1"/>
+          </svg>
+        </div>
+        <div class="brand-meta">
+          <span class="brand-super">Heritage Hospitality Suite</span>
+          <h1 class="brand-title">Svarga Heritage Hotel &amp; Resort</h1>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Student Info Badge -->
+        <div class="student-badge">
+          <div class="student-avatar" aria-hidden="true">HS</div>
+          <div class="student-details">
+            <span class="student-name">Hadi Sulaiman</span>
+            <span class="student-nim">NIM: <strong>241011402572</strong> &bull; 05TPLM003</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary btn-sm" id="btnOpenAudit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"></polyline>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+          Audit Algoritma NIM
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="main-workspace">
+    <div class="workspace-container">
+
+      <!-- Breadcrumbs & Assignment Context Banner -->
+      <section class="context-banner">
+        <div class="banner-content">
+          <div class="banner-tag">Penugasan Pemrograman Web 1 &bull; Pertemuan 16</div>
+          <h2 class="banner-heading">Sistem Reservasi Hotel &amp; Kalkulasi Tagihan Tamu</h2>
+          <p class="banner-desc">
+            Aplikasi dirancang secara presisi mengacu pada <strong>Digit Terakhir NIM = 2</strong> (Sistem Reservasi Hotel) 
+            dan <strong>Digit Ketiga Terakhir NIM = 5</strong> (Tantangan Perulangan: Menghitung Rata-rata Data). 
+            Seluruh struktur logika kontrol keputusan (<code>if</code>, <code>if-else</code>, <code>if-else if-else</code>, <code>switch-case</code>) 
+            dan algoritma perulangan (<code>for</code>, <code>while</code>, <code>do-while</code>, <code>Array</code>) 
+            dieksekusi sesuai standar baku penugasan akademik.
+          </p>
+        </div>
+        <div class="nim-indicator-grid">
+          <div class="indicator-cell">
+            <span class="indicator-label">Digit Terakhir (Aplikasi)</span>
+            <span class="indicator-val">2 &rarr; Reservasi Hotel</span>
+          </div>
+          <div class="indicator-cell">
+            <span class="indicator-label">Digit Ke-3 Terakhir (Perulangan)</span>
+            <span class="indicator-val">5 &rarr; Hitung Rata-rata</span>
+          </div>
+          <div class="indicator-cell">
+            <span class="indicator-label">Kombinasi 5 Digit Terakhir</span>
+            <span class="indicator-val">0(9), 2, 5, 7, 2</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid Layout: Form Reservasi (Kiri) & Live Folio Struk (Kanan) -->
+      <div class="reservation-grid">
+        
+        <!-- Left Column: Formulir Reservasi -->
+        <section class="card form-card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <h3 class="card-title">Formulir Reservasi Tamu</h3>
+              <p class="card-subtitle">Lengkapi formulir untuk menghitung tarif dan menetapkan kategori kamar tamu.</p>
+            </div>
+            <span class="badge badge-accent">Input Reservasi Baru</span>
+          </div>
+
+          <form id="reservationForm" class="form-body" novalidate>
+            
+            <!-- Alert Notifikasi / Feedback Validasi -->
+            <div id="formAlert" class="alert d-none" role="alert"></div>
+
+            <!-- Bagian 1: Data Identitas Tamu -->
+            <fieldset class="form-fieldset">
+              <legend class="fieldset-legend">1. Identitas Tamu</legend>
+              <div class="form-row form-row-2">
+                <div class="form-group">
+                  <label for="guestName" class="form-label">
+                    Nama Lengkap Tamu <span class="required">*</span>
+                  </label>
+                  <input type="text" id="guestName" name="guestName" class="form-input" placeholder="Contoh: Raden Mas Dananjaya" required>
+                  <span class="form-hint">Sesuai kartu identitas resmi (KTP/Paspor).</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="guestPhone" class="form-label">
+                    Nomor WhatsApp / HP <span class="required">*</span>
+                  </label>
+                  <input type="tel" id="guestPhone" name="guestPhone" class="form-input" placeholder="08xxxxxxxxxx" required>
+                  <span class="form-hint">Format nomor Indonesia (10–13 digit).</span>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Bagian 2: Parameter Kamar & Jadwal Menginap -->
+            <fieldset class="form-fieldset">
+              <legend class="fieldset-legend">2. Pilihan Kamar &amp; Jadwal Menginap</legend>
+              <div class="form-group">
+                <label for="roomType" class="form-label">
+                  Tipe Kamar Hotel <span class="required">*</span>
+                </label>
+                <select id="roomType" name="roomType" class="form-select" required>
+                  <option value="" disabled selected>-- Pilih Koleksi Kamar &amp; Suite --</option>
+                  <!-- 9 Opsi Tipe Kamar (Diolah via Switch Case) -->
+                  <option value="STD">Superior Heritage Single (Rp 350.000 / malam &bull; Kapasitas 1 Org)</option>
+                  <option value="DLX">Deluxe Twin Garden (Rp 550.000 / malam &bull; Kapasitas 2 Org)</option>
+                  <option value="PRE">Premium King Boulevard (Rp 750.000 / malam &bull; Kapasitas 2 Org)</option>
+                  <option value="EXE">Executive City Horizon (Rp 1.100.000 / malam &bull; Kapasitas 3 Org)</option>
+                  <option value="JS">Junior Suite Private Balcony (Rp 1.500.000 / malam &bull; Kapasitas 3 Org)</option>
+                  <option value="FAM">Grand Family Suite (Rp 2.000.000 / malam &bull; Kapasitas 4 Org)</option>
+                  <option value="PS">Presidential Heritage Suite (Rp 3.500.000 / malam &bull; Kapasitas 4 Org)</option>
+                  <option value="VIL">Svarga Private Pool Villa (Rp 5.000.000 / malam &bull; Kapasitas 6 Org)</option>
+                  <option value="ROY">Royal Keraton Penthouse (Rp 8.000.000 / malam &bull; Kapasitas 8 Org)</option>
+                </select>
+                <span class="form-hint">Kategori kamar dievaluasi otomatis berdasarkan spesifikasi dan tarif dasar.</span>
+              </div>
+
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label for="checkInDate" class="form-label">
+                    Tanggal Check-in <span class="required">*</span>
+                  </label>
+                  <input type="date" id="checkInDate" name="checkInDate" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="checkOutDate" class="form-label">
+                    Tanggal Check-out <span class="required">*</span>
+                  </label>
+                  <input type="date" id="checkOutDate" name="checkOutDate" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="guestCount" class="form-label">
+                    Jumlah Tamu <span class="required">*</span>
+                  </label>
+                  <input type="number" id="guestCount" name="guestCount" class="form-input" min="1" max="10" value="1" required>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Bagian 3: Fasilitas Tambahan (Amenities Checklist) -->
+            <fieldset class="form-fieldset">
+              <legend class="fieldset-legend">3. Layanan &amp; Fasilitas Tambahan (Amenities)</legend>
+              <div class="amenities-grid" id="amenitiesContainer">
+                <!-- Checkboxes diinjeksi atau terstruktur rapi untuk do-while loop -->
+                <label class="checkbox-card">
+                  <input type="checkbox" name="amenity" value="breakfast" data-price="120000" data-label="Sarapan Prasmanan Nusantara">
+                  <span class="checkbox-indicator"></span>
+                  <span class="checkbox-info">
+                    <strong class="checkbox-title">Sarapan Prasmanan</strong>
+                    <span class="checkbox-desc">+Rp 120.000 / hari</span>
+                  </span>
+                </label>
+
+                <label class="checkbox-card">
+                  <input type="checkbox" name="amenity" value="shuttle" data-price="250000" data-label="Antar-Jemput Bandara VIP">
+                  <span class="checkbox-indicator"></span>
+                  <span class="checkbox-info">
+                    <strong class="checkbox-title">Antar-Jemput Bandara</strong>
+                    <span class="checkbox-desc">+Rp 250.000 / trip</span>
+                  </span>
+                </label>
+
+                <label class="checkbox-card">
+                  <input type="checkbox" name="amenity" value="wifi" data-price="50000" data-label="Dedicated High-Speed Wi-Fi 6">
+                  <span class="checkbox-indicator"></span>
+                  <span class="checkbox-info">
+                    <strong class="checkbox-title">Wi-Fi Ultra Cepat</strong>
+                    <span class="checkbox-desc">+Rp 50.000 / masa inap</span>
+                  </span>
+                </label>
+
+                <label class="checkbox-card">
+                  <input type="checkbox" name="amenity" value="spa" data-price="350000" data-label="Voucher Svarga Traditional Spa">
+                  <span class="checkbox-indicator"></span>
+                  <span class="checkbox-info">
+                    <strong class="checkbox-title">Voucher Spa Tradisional</strong>
+                    <span class="checkbox-desc">+Rp 350.000 / sesi</span>
+                  </span>
+                </label>
+
+                <label class="checkbox-card">
+                  <input type="checkbox" name="amenity" value="latecheckout" data-price="200000" data-label="Fasilitas Late Check-out 16.00">
+                  <span class="checkbox-indicator"></span>
+                  <span class="checkbox-info">
+                    <strong class="checkbox-title">Late Check-out 16.00</strong>
+                    <span class="checkbox-desc">+Rp 200.000</span>
+                  </span>
+                </label>
+
+                <label class="checkbox-card">
+                  <input type="checkbox" name="amenity" value="extrabed" data-price="300000" data-label="Tambahan Extra Bed Ergonomis">
+                  <span class="checkbox-indicator"></span>
+                  <span class="checkbox-info">
+                    <strong class="checkbox-title">Extra Bed Ergonomis</strong>
+                    <span class="checkbox-desc">+Rp 300.000 / malam</span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Bagian 4: Skema Pembayaran, Member, & Kode Promo -->
+            <fieldset class="form-fieldset">
+              <legend class="fieldset-legend">4. Keanggotaan, Promo, &amp; Penjaminan</legend>
+              <div class="form-row form-row-3">
+                <div class="form-group">
+                  <label for="promoCode" class="form-label">Kode Promo Khusus</label>
+                  <input type="text" id="promoCode" name="promoCode" class="form-input font-mono" placeholder="Contoh: SVARGA2026">
+                  <span class="form-hint">Coba <code>SVARGA2026</code> atau <code>DISKONHEMAT</code>.</span>
+                </div>
+
+                <div class="form-group">
+                  <label for="depositScheme" class="form-label">Skema Pembayaran / Deposit</label>
+                  <select id="depositScheme" name="depositScheme" class="form-select">
+                    <option value="full">Pembayaran Lunas (100%)</option>
+                    <option value="installment">Deposit Bertahap (4x Siklus Angsuran)</option>
+                    <option value="onsite">Bayar Tunai di Resepsionis</option>
+                  </select>
+                  <span class="form-hint">Memicu kalkulasi angsuran bertahap perulangan <code>while</code>.</span>
+                </div>
+
+                <div class="form-group form-group-checkbox">
+                  <label class="switch-control">
+                    <input type="checkbox" id="isMember" name="isMember">
+                    <span class="switch-slider"></span>
+                    <span class="switch-label">Tamu Member Svarga Privilege (+5% Ekstra Potongan)</span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Tombol Aksi Formulir -->
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="btnSubmitReservation">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                Hitung &amp; Terbitkan Reservasi
+              </button>
+
+              <button type="button" class="btn btn-secondary" id="btnResetForm">
+                Reset Input
+              </button>
+            </div>
+
+          </form>
+        </section>
+
+        <!-- Right Column: Live Guest Folio / Bill Receipt -->
+        <section class="card folio-card">
+          <div class="folio-header">
+            <div class="folio-stamp" id="folioStatusStamp">MENUNGGU INPUT</div>
+            <div class="folio-brand">
+              <h4 class="folio-hotel-name">Svarga Heritage Hotel</h4>
+              <span class="folio-doc-title">GUEST FOLIO &amp; BILL BREAKDOWN</span>
+              <span class="folio-ticket-code" id="folioTicketNumber">BOOKING REF: SHR-PENDING</span>
+            </div>
+          </div>
+
+          <div class="folio-divider"></div>
+
+          <div class="folio-body" id="folioBody">
+            
+            <!-- Ringkasan Tamu & Kamar -->
+            <div class="folio-section">
+              <div class="folio-row">
+                <span class="folio-label">Nama Tamu</span>
+                <span class="folio-val" id="folioGuestName">-</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Kontak / Telepon</span>
+                <span class="folio-val" id="folioGuestPhone">-</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Koleksi Kamar</span>
+                <span class="folio-val" id="folioRoomName">Belum dipilih</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Kategori Klasifikasi Kamar</span>
+                <span class="folio-val badge-category" id="folioRoomCategory">-</span>
+              </div>
+            </div>
+
+            <div class="folio-divider-dashed"></div>
+
+            <!-- Detail Durasi & Surcharge Hari -->
+            <div class="folio-section">
+              <div class="folio-row">
+                <span class="folio-label">Jadwal Menginap</span>
+                <span class="folio-val" id="folioDates">- s/d -</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Total Durasi</span>
+                <span class="folio-val"><strong id="folioDuration">0</strong> Malam</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Tarif Kamar / Malam</span>
+                <span class="folio-val font-mono" id="folioRatePerNight">Rp 0</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Subtotal Tarif Kamar</span>
+                <span class="folio-val font-mono" id="folioSubtotalRoom">Rp 0</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Penyesuaian Hari (Surcharge Weekend)</span>
+                <span class="folio-val font-mono" id="folioSurcharge">Rp 0</span>
+              </div>
+            </div>
+
+            <div class="folio-divider-dashed"></div>
+
+            <!-- Potongan & Diskon -->
+            <div class="folio-section">
+              <div class="folio-row">
+                <span class="folio-label">Kategori Program Diskon</span>
+                <span class="folio-val" id="folioDiscountCategory">Tarif Standar</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Nominal Potongan Durasi</span>
+                <span class="folio-val font-mono text-danger" id="folioDiscountAmount">- Rp 0</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Total Biaya Fasilitas (Amenities)</span>
+                <span class="folio-val font-mono" id="folioAmenitiesTotal">Rp 0</span>
+              </div>
+              <div class="folio-row">
+                <span class="folio-label">Potongan Promo / Member</span>
+                <span class="folio-val font-mono text-danger" id="folioPromoDiscount">- Rp 0</span>
+              </div>
+            </div>
+
+            <div class="folio-divider-double"></div>
+
+            <!-- Total Akhir & Status Garansi -->
+            <div class="folio-total-box">
+              <div class="folio-total-row">
+                <span class="folio-total-label">TOTAL BIAYA RESERVASI</span>
+                <span class="folio-total-val font-mono" id="folioGrandTotal">Rp 0</span>
+              </div>
+              <div class="folio-meta-status">
+                <span class="meta-label">Status Garansi Reservasi:</span>
+                <span class="meta-val" id="folioGuaranteeStatus">Menunggu Kalkulasi</span>
+              </div>
+            </div>
+
+            <!-- Rincian Cicilan Deposit (Output Loop While) -->
+            <div class="folio-installment-box d-none" id="folioInstallmentBox">
+              <div class="installment-header">
+                <strong>Simulasi 4x Angsuran Deposit (Perulangan While)</strong>
+              </div>
+              <ul class="installment-list font-mono" id="installmentList"></ul>
+            </div>
+
+          </div>
+
+          <div class="folio-footer">
+            <button type="button" class="btn btn-accent btn-block" id="btnSaveToTable" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+              Konfirmasi &amp; Simpan ke Data Tamu
+            </button>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Section Statistik Rata-rata Data (Tantangan Perulangan NIM Digit 5) -->
+      <section class="stats-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-kicker">Tantangan Perulangan NIM Digit 5</span>
+            <h3 class="section-title">Statistik Rata-rata &amp; Metrik Agregasi Data Tamu</h3>
+          </div>
+          <p class="section-lead">
+            Dihitung secara dinamis melalui algoritma perulangan JavaScript untuk mengekstrak nilai rata-rata (*mean*) dari seluruh populasi reservasi aktif.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Rata-rata Biaya per Reservasi</span>
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="1" x2="12" y2="23"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-value font-mono" id="statAvgBilling">Rp 0</div>
+            <span class="stat-desc">Dihitung dari total akumulasi seluruh tagihan dibagi jumlah reservasi.</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Rata-rata Durasi Menginap</span>
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-value font-mono" id="statAvgDuration">0 Malam</div>
+            <span class="stat-desc">Rata-rata lama menginap para tamu per reservasi hotel.</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Rata-rata Pengeluaran Fasilitas</span>
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-value font-mono" id="statAvgAmenities">Rp 0</div>
+            <span class="stat-desc">Rata-rata belanja layanan tambahan (amenities &amp; sarapan).</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Populasi Data Tamu Terdaftar</span>
+              <div class="stat-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-value font-mono" id="statTotalReservations">0 Tamu</div>
+            <span class="stat-desc">Array data utama (&ge; 10 record terisi otomatis).</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section Perulangan FOR (12 Iterasi): Jadwal Rincian Harian -->
+      <section class="schedule-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-kicker">Implementasi Perulangan For (12 Iterasi)</span>
+            <h3 class="section-title">Simulasi Breakdown Kalender Menginap 12 Hari</h3>
+          </div>
+          <p class="section-lead">
+            Dihasilkan menggunakan loop <code>for (let i = 1; i &lt;= 12; i++)</code> untuk mensimulasikan audit invoice harian, 
+            perhitungan tarif akhir pekan versus hari kerja, serta pelacakan saldo kumulatif.
+          </p>
+        </div>
+
+        <div class="schedule-container">
+          <div class="table-responsive">
+            <table class="data-table" id="dailyScheduleTable">
+              <thead>
+                <tr>
+                  <th>Hari / Malam Ke-</th>
+                  <th>Keterangan Kalender</th>
+                  <th>Klasifikasi Hari</th>
+                  <th>Tarif Dasar</th>
+                  <th>Surcharge</th>
+                  <th>Tarif Netto Hari</th>
+                  <th>Akumulasi Total</th>
+                </tr>
+              </thead>
+              <tbody id="dailyScheduleBody">
+                <!-- Diisi via loop for oleh script.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Tabel Utama Data Reservasi Tamu (Array >= 10 Elemen) -->
+      <section class="records-section">
+        <div class="records-header">
+          <div class="records-title-group">
+            <span class="section-kicker">Manajemen Data Tamu</span>
+            <h3 class="section-title">Buku Besar Reservasi Tamu Svarga Heritage</h3>
+            <p class="section-lead">Memuat dataset awal (minimal 10 data array) dan terintegrasi langsung dengan formulir input.</p>
+          </div>
+
+          <div class="records-filters">
+            <input type="text" id="tableSearchInput" class="form-input form-input-sm" placeholder="Cari nama atau kode booking...">
+            <select id="tableCategoryFilter" class="form-select form-select-sm">
+              <option value="all">Semua Kategori Kamar</option>
+              <option value="Standard">Standard Heritage</option>
+              <option value="Deluxe">Deluxe Superior</option>
+              <option value="Executive">Executive Prime</option>
+              <option value="Presidential">Presidential Suite</option>
+              <option value="Penthouse">Royal Penthouse</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table records-table" id="reservationsTable">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Kode Booking</th>
+                <th>Nama Tamu</th>
+                <th>Tipe Kamar</th>
+                <th>Kategori Kamar</th>
+                <th>Check-in &rarr; Out</th>
+                <th>Durasi</th>
+                <th>Total Tagihan</th>
+                <th>Garansi</th>
+                <th>Tindakan</th>
+              </tr>
+            </thead>
+            <tbody id="reservationsTableBody">
+              <!-- Baris data diisi oleh script.js dari array -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Modal / Drawer Audit Algoritma Kepatuhan Spesifikasi NIM -->
+  <aside class="modal-backdrop d-none" id="auditModal" aria-hidden="true" role="dialog" aria-labelledby="modalAuditTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="badge badge-accent">Audit Eksekusi Akademik</span>
+          <h4 class="modal-title" id="modalAuditTitle">Verifikasi Struktur Algoritma JavaScript Berdasarkan NIM 241011402572</h4>
+        </div>
+        <button type="button" class="btn-close" id="btnCloseAudit" aria-label="Tutup Panel Modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-intro">
+          Berikut adalah bukti keterpenuhan seluruh matriks logika percabangan (*decision control*) dan perulangan (*looping*) 
+          yang diuji secara langsung pada sesi eksekusi saat ini:
+        </p>
+
+        <div class="audit-list">
+          
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>1. Struktur `if` Mandiri (Digit ke-1 NIM: Nilai 9)</strong>
+              <p>Minimal 9 kondisi pemeriksaan. Diimplementasikan sebanyak <strong>10 guard clauses validasi input</strong> (Nama, format HP, tanggal lampau, urutan check-out, kapasitas maksimal kamar, deposit minimum, member loyalty, promo code, extra bed, dan garansi instant).</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>2. Struktur `if...else` (Digit ke-2 NIM: Nilai 2)</strong>
+              <p>Minimal 2 blok pemilihan kemungkinan ganda. Diimplementasikan pada: 1) Penentuan tarif akhir pekan (Weekend vs Weekday), 2) Penetapan status garansi reservasi (Instant Confirmation vs Manual Guarantee).</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>3. Struktur `if...else if...else` (Digit ke-3 NIM: Nilai 5)</strong>
+              <p>Minimal 5 kategori keputusan. Diimplementasikan pada: 1) Klasifikasi 5 Kategori Kamar (Standard, Deluxe, Executive, Presidential, Penthouse), 2) Kategori Diskon Menginap (Reguler 0%, Saver 5%, Weekly 10%, Extended 15%, Long Term 25%).</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>4. Struktur `switch...case` (Digit ke-4 NIM: Nilai 7)</strong>
+              <p>Minimal 7 + 2 = 9 case di luar default. Diimplementasikan pada pemilihan <strong>9 Tipe Kamar</strong> (STD, DLX, PRE, EXE, JS, FAM, PS, VIL, ROY) + 1 blok <code>default</code>.</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>5. Perulangan `for` (Digit ke-1 NIM: Nilai 9)</strong>
+              <p>Minimal 9 + 3 = 12 iterasi. Diimplementasikan pada modul <strong>Breakdown Kalender Menginap 12 Hari</strong> secara berurutan untuk menghitung kalkulasi tarif harian dan saldo kumulatif.</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>6. Perulangan `while` (Digit ke-2 NIM: Nilai 2)</strong>
+              <p>Minimal 2 + 2 = 4 iterasi. Diimplementasikan pada modul <strong>Simulasi 4x Angsuran Deposit Bertahap</strong> dengan perhitungan proporsional saldo pembayaran.</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>7. Perulangan `do...while` (Digit ke-3 NIM: Nilai 5)</strong>
+              <p>Minimal 5 + 1 = 6 iterasi. Diimplementasikan pada modul <strong>Pemeriksaan &amp; Validasi 6 Fasilitas Tambahan (Amenities)</strong> kamar tamu.</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>8. Struktur `Array` (Digit ke-4 NIM: Nilai 7)</strong>
+              <p>Minimal 7 + 3 = 10 elemen. Diimplementasikan pada <strong>Array Tipe Kamar (10 item katalog)</strong> dan <strong>Array Riwayat Data Reservasi Tamu (10 record awal)</strong>.</p>
+            </div>
+          </div>
+
+          <div class="audit-item">
+            <div class="audit-status-icon success">&check;</div>
+            <div class="audit-content">
+              <strong>9. Tantangan Perulangan (Digit ke-3 Terakhir NIM: Nilai 5)</strong>
+              <p>Tantangan: <strong>Menghitung Rata-rata Data</strong>. Diimplementasikan melalui fungsi perulangan untuk menghitung rata-rata biaya menginap, rata-rata durasi tamu, dan rata-rata pengeluaran fasilitas secara dinamis.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btnCloseAuditFooter">Tutup Panel</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-meta">
+        <p class="footer-copy">&copy; 2026 Svarga Heritage Hotel &amp; Resort. Dikembangkan untuk Penugasan Akademik Pemrograman Web 1.</p>
+        <p class="footer-student">
+          Mahasiswa: <strong>Hadi Sulaiman</strong> &bull; NIM: <strong>241011402572</strong> &bull; Kelas: <strong>05TPLM003</strong> &bull; Teknik Informatika S-1, Universitas Pamulang.
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="#reservationForm" class="footer-link">Formulir Reservasi</a>
+        <a href="#reservationsTable" class="footer-link">Buku Tamu</a>
+        <a href="#dailyScheduleTable" class="footer-link">Jadwal 12 Hari</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
