@@ -175,7 +175,18 @@ body {
   outline-offset: 2px;
 }
 
-/* --- 3. TOP NAVIGATION & APP HEADER --- */
+/* ==========================================================================
+   BAGIAN 3: TOP NAVIGATION & APP HEADER (FLEXBOX ARCHITECTURE)
+   ==========================================================================
+   PENJELASAN UNTUK DOSEN:
+   - Header menerapkan `position: sticky; top: 0;` sehingga tetap melayang di
+     bagian atas layar saat pengguna menggulir halaman (sticky navigation).
+   - `backdrop-filter: blur(8px)` memberikan efek kaca kabur (frosted glass) modern
+     di atas latar belakang yang transparan 95% (rgba(255, 255, 255, 0.95)).
+   - `z-index: 100` memastikan bilah navigasi selalu berada di atas kartu konten.
+   - Tata letak internal menggunakan `display: flex` dengan `justify-content: space-between`
+     untuk memisahkan logo hotel di sisi kiri dan badge identitas mahasiswa di sisi kanan.
+   ========================================================================== */
 .app-header {
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
@@ -188,11 +199,11 @@ body {
 
 .header-container {
   max-width: 1360px;
-  margin: 0 auto;
+  margin: 0 auto;               /* Pusatkan container di tengah layar */
   padding: var(--space-4) var(--space-6);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex;                /* Flexbox container */
+  align-items: center;          /* Penyelarasan vertikal di tengah */
+  justify-content: space-between; /* Pisahkan elemen ke ujung kiri dan kanan */
   gap: var(--space-4);
 }
 
@@ -202,6 +213,7 @@ body {
   gap: var(--space-4);
 }
 
+/* Lambang/Crest Logo Hotel */
 .brand-crest {
   width: 44px;
   height: 44px;
@@ -212,25 +224,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: 0;               /* Cegah logo menciut jika layar mengecil */
 }
 
 .brand-meta {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;       /* Susun teks kategori di atas nama hotel */
 }
 
 .brand-super {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.08em;       /* Jarak antar-huruf elegan untuk sub-judul */
   color: var(--accent-primary);
   line-height: 1.2;
 }
 
 .brand-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-serif); /* Serif Newsreader untuk sentuhan kemewahan hotel */
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -244,6 +256,7 @@ body {
   gap: var(--space-4);
 }
 
+/* Badge Identitas Mahasiswa (Nama & NIM) */
 .student-badge {
   display: flex;
   align-items: center;
@@ -251,7 +264,7 @@ body {
   padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-pill); /* Bentuk kapsul lonjong sempurna */
 }
 
 .student-avatar {
@@ -285,7 +298,16 @@ body {
   color: var(--text-secondary);
 }
 
-/* --- 4. BUTTONS & CONTROLS --- */
+/* ==========================================================================
+   BAGIAN 4: TOMBOL & INTERAKSI (BUTTON SYSTEM)
+   ==========================================================================
+   PENJELASAN UNTUK DOSEN:
+   - Menggunakan `display: inline-flex` agar ikon SVG dan label teks tombol
+     selalu sejajar presisi di tengah secara vertikal (`align-items: center`).
+   - `cursor: pointer` memberi indikasi visual tangan interaktif kepada pengguna.
+   - Efek `transition: all var(--transition-fast)` memberikan animasi warna yang lembut
+     saat kursor melayang (hover) atau tombol ditekan (active), tanpa lag.
+   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
