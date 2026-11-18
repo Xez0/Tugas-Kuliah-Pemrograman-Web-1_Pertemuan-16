@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistem Reservasi Hotel - Svarga Heritage Hotel & Resort</title>
-  <meta name="description" content="Aplikasi Web Sistem Reservasi Hotel & Kalkulasi Tagihan Tamu Berdasarkan Variasi NIM 241011402572 - Pemrograman Web 1 Pertemuan 16 Universitas Pamulang">
+  <title>Sistem Reservasi Hotel - Svarga Heritage Hotel &amp; Resort</title>
+  <meta name="description" content="Aplikasi Web Sistem Reservasi Hotel &amp; Kalkulasi Tagihan Tamu Terpadu - Svarga Heritage Hotel &amp; Resort">
   <!-- Google Fonts: Newsreader (Serif Editorial) & Plus Jakarta Sans (UI Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,13 +29,10 @@
       </div>
 
       <div class="header-actions">
-        <!-- Student Info Badge -->
-        <div class="student-badge">
-          <div class="student-avatar" aria-hidden="true">HS</div>
-          <div class="student-details">
-            <span class="student-name">Hadi Sulaiman</span>
-            <span class="student-nim">NIM: <strong>241011402572</strong> &bull; 05TPLM003</span>
-          </div>
+        <!-- Status Operasional Front Office -->
+        <div class="system-status-badge">
+          <span class="status-indicator-dot" aria-hidden="true"></span>
+          <span class="status-text">Terminal Front Desk &bull; Online</span>
         </div>
 
         <button type="button" class="btn btn-secondary btn-sm" id="btnOpenAudit">
@@ -43,7 +40,7 @@
             <polyline points="9 11 12 14 22 4"></polyline>
             <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
           </svg>
-          Audit Algoritma NIM
+          Verifikasi Logika Sistem
         </button>
       </div>
     </div>
@@ -53,31 +50,29 @@
   <main class="main-workspace">
     <div class="workspace-container">
 
-      <!-- Breadcrumbs & Assignment Context Banner -->
+      <!-- Context Banner: Gambaran Operasional Front Office -->
       <section class="context-banner">
         <div class="banner-content">
-          <div class="banner-tag">Penugasan Pemrograman Web 1 &bull; Pertemuan 16</div>
+          <div class="banner-tag">Front Desk &amp; Reservation Management</div>
           <h2 class="banner-heading">Sistem Reservasi Hotel &amp; Kalkulasi Tagihan Tamu</h2>
           <p class="banner-desc">
-            Aplikasi dirancang secara presisi mengacu pada <strong>Digit Terakhir NIM = 2</strong> (Sistem Reservasi Hotel) 
-            dan <strong>Digit Ketiga Terakhir NIM = 5</strong> (Tantangan Perulangan: Menghitung Rata-rata Data). 
-            Seluruh struktur logika kontrol keputusan (<code>if</code>, <code>if-else</code>, <code>if-else if-else</code>, <code>switch-case</code>) 
-            dan algoritma perulangan (<code>for</code>, <code>while</code>, <code>do-while</code>, <code>Array</code>) 
-            dieksekusi sesuai standar baku penugasan akademik.
+            Portal operasional terpadu untuk penerimaan reservasi kamar, penetapan kategori kamar otomatis, 
+            kalkulasi penyesuaian tarif akhir pekan, evaluasi diskon durasi menginap, audit fasilitas tambahan, 
+            serta pelacakan buku besar tamu dan simulasi penagihan harian secara waktu nyata.
           </p>
         </div>
-        <div class="nim-indicator-grid">
+        <div class="operational-stats-grid">
           <div class="indicator-cell">
-            <span class="indicator-label">Digit Terakhir (Aplikasi)</span>
-            <span class="indicator-val">2 &rarr; Reservasi Hotel</span>
+            <span class="indicator-label">Status Operasional</span>
+            <span class="indicator-val">Front Desk Aktif</span>
           </div>
           <div class="indicator-cell">
-            <span class="indicator-label">Digit Ke-3 Terakhir (Perulangan)</span>
-            <span class="indicator-val">5 &rarr; Hitung Rata-rata</span>
+            <span class="indicator-label">Koleksi Kamar</span>
+            <span class="indicator-val">9 Tipe Tersedia</span>
           </div>
           <div class="indicator-cell">
-            <span class="indicator-label">Kombinasi 5 Digit Terakhir</span>
-            <span class="indicator-val">0(9), 2, 5, 7, 2</span>
+            <span class="indicator-label">Sistem Penagihan</span>
+            <span class="indicator-val">Folio Waktu Nyata</span>
           </div>
         </div>
       </section>
@@ -247,7 +242,7 @@
                     <option value="installment">Deposit Bertahap (4x Siklus Angsuran)</option>
                     <option value="onsite">Bayar Tunai di Resepsionis</option>
                   </select>
-                  <span class="form-hint">Memicu kalkulasi angsuran bertahap perulangan <code>while</code>.</span>
+                  <span class="form-hint">Simulasi pembayaran berkala (4x termin angsuran bertahap).</span>
                 </div>
 
                 <div class="form-group form-group-checkbox">
@@ -376,10 +371,10 @@
               </div>
             </div>
 
-            <!-- Rincian Cicilan Deposit (Output Loop While) -->
+            <!-- Rincian Cicilan Deposit Bertahap -->
             <div class="folio-installment-box d-none" id="folioInstallmentBox">
               <div class="installment-header">
-                <strong>Simulasi 4x Angsuran Deposit (Perulangan While)</strong>
+                <strong>Simulasi 4x Termin Angsuran Deposit Bertahap</strong>
               </div>
               <ul class="installment-list font-mono" id="installmentList"></ul>
             </div>
@@ -419,11 +414,11 @@
 
       </div>
 
-      <!-- Section Statistik Rata-rata Data (Tantangan Perulangan NIM Digit 5) -->
+      <!-- Section Statistik Rata-rata Data -->
       <section class="stats-section">
         <div class="section-header">
           <div class="section-title-wrap">
-            <span class="section-kicker">Tantangan Perulangan NIM Digit 5</span>
+            <span class="section-kicker">Analisis &amp; Agregasi Data Tamu</span>
             <h3 class="section-title">Statistik Rata-rata &amp; Metrik Agregasi Data Tamu</h3>
           </div>
           <p class="section-lead">
@@ -488,22 +483,21 @@
               </div>
             </div>
             <div class="stat-value font-mono" id="statTotalReservations">0 Tamu</div>
-            <span class="stat-desc">Array data utama (&ge; 10 record terisi otomatis).</span>
+            <span class="stat-desc">Total riwayat transaksi terdata dalam sistem.</span>
           </div>
 
         </div>
       </section>
 
-      <!-- Section Perulangan FOR (12 Iterasi): Jadwal Rincian Harian -->
+      <!-- Section Jadwal Kalender Rincian Harian -->
       <section class="schedule-section">
         <div class="section-header">
           <div class="section-title-wrap">
-            <span class="section-kicker">Implementasi Perulangan For (12 Iterasi)</span>
+            <span class="section-kicker">Audit Penagihan Harian</span>
             <h3 class="section-title">Simulasi Breakdown Kalender Menginap 12 Hari</h3>
           </div>
           <p class="section-lead">
-            Dihasilkan menggunakan loop <code>for (let i = 1; i &lt;= 12; i++)</code> untuk mensimulasikan audit invoice harian, 
-            perhitungan tarif akhir pekan versus hari kerja, serta pelacakan saldo kumulatif.
+            Rincian simulasi invoice harian selama 12 hari kalender untuk memantau fluktuasi tarif akhir pekan versus hari kerja serta pelacakan saldo kumulatif.
           </p>
         </div>
 
@@ -529,13 +523,13 @@
         </div>
       </section>
 
-      <!-- Section Tabel Utama Data Reservasi Tamu (Array >= 10 Elemen) -->
+      <!-- Section Tabel Utama Data Reservasi Tamu -->
       <section class="records-section">
         <div class="records-header">
           <div class="records-title-group">
             <span class="section-kicker">Manajemen Data Tamu</span>
             <h3 class="section-title">Buku Besar Reservasi Tamu Svarga Heritage</h3>
-            <p class="section-lead">Memuat dataset awal (minimal 10 data array) dan terintegrasi langsung dengan formulir input.</p>
+            <p class="section-lead">Memuat dataset riwayat transaksi reservasi aktif dan terintegrasi langsung dengan formulir input.</p>
           </div>
 
           <div class="records-filters">
@@ -577,21 +571,21 @@
     </div>
   </main>
 
-  <!-- Modal / Drawer Audit Algoritma Kepatuhan Spesifikasi NIM -->
+  <!-- Modal / Drawer Audit Algoritma Logika Sistem -->
   <aside class="modal-backdrop d-none" id="auditModal" aria-hidden="true" role="dialog" aria-labelledby="modalAuditTitle">
     <div class="modal-card">
       <div class="modal-header">
         <div class="modal-title-group">
-          <span class="badge badge-accent">Audit Eksekusi Akademik</span>
-          <h4 class="modal-title" id="modalAuditTitle">Verifikasi Struktur Algoritma JavaScript Berdasarkan NIM 241011402572</h4>
+          <span class="badge badge-accent">Panel Algoritma</span>
+          <h4 class="modal-title" id="modalAuditTitle">Verifikasi Struktur Algoritma &amp; Logika Pemrograman Sistem</h4>
         </div>
         <button type="button" class="btn-close" id="btnCloseAudit" aria-label="Tutup Panel Modal">&times;</button>
       </div>
 
       <div class="modal-body">
         <p class="modal-intro">
-          Berikut adalah bukti keterpenuhan seluruh matriks logika percabangan (*decision control*) dan perulangan (*looping*) 
-          yang diuji secara langsung pada sesi eksekusi saat ini:
+          Berikut adalah rincian pembuktian struktur logika percabangan (<em>decision control</em>) dan perulangan (<em>looping</em>) 
+          yang berjalan secara reaktif pada sistem:
         </p>
 
         <div class="audit-list">
@@ -599,72 +593,72 @@
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>1. Struktur `if` Mandiri (Digit ke-1 NIM: Nilai 9)</strong>
-              <p>Minimal 9 kondisi pemeriksaan. Diimplementasikan sebanyak <strong>10 guard clauses validasi input</strong> (Nama, format HP, tanggal lampau, urutan check-out, kapasitas maksimal kamar, deposit minimum, member loyalty, promo code, extra bed, dan garansi instant).</p>
+              <strong>1. Struktur Percabangan `if` Mandiri</strong>
+              <p>10 kondisi pemeriksaan guard clauses validasi input formulir (Nama tamu, format nomor HP, tanggal lampau, urutan check-out, batas kapasitas kamar, deposit minimum, member loyalty, promo code, konsistensi ekstra bed, dan garansi instant).</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>2. Struktur `if...else` (Digit ke-2 NIM: Nilai 2)</strong>
-              <p>Minimal 2 blok pemilihan kemungkinan ganda. Diimplementasikan pada: 1) Penentuan tarif akhir pekan (Weekend vs Weekday), 2) Penetapan status garansi reservasi (Instant Confirmation vs Manual Guarantee).</p>
+              <strong>2. Struktur Percabangan `if...else`</strong>
+              <p>2 blok penentuan kondisi dua kemungkinan: 1) Penentuan tarif akhir pekan (Weekend surcharge vs Weekday reguler), 2) Penetapan status garansi reservasi (Terkonfirmasi Instan vs Menunggu Verifikasi Manual).</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>3. Struktur `if...else if...else` (Digit ke-3 NIM: Nilai 5)</strong>
-              <p>Minimal 5 kategori keputusan. Diimplementasikan pada: 1) Klasifikasi 5 Kategori Kamar (Standard, Deluxe, Executive, Presidential, Penthouse), 2) Kategori Diskon Menginap (Reguler 0%, Saver 5%, Weekly 10%, Extended 15%, Long Term 25%).</p>
+              <strong>3. Struktur Percabangan `if...else if...else`</strong>
+              <p>5 kategori keputusan bertingkat: 1) Klasifikasi 5 Kategori Kemewahan Kamar (Standard, Deluxe, Executive, Presidential, Penthouse), 2) Evaluasi 5 Tingkat Diskon Menginap (Reguler 0%, Saver 5%, Weekly 10%, Extended 15%, Long Term 25%).</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>4. Struktur `switch...case` (Digit ke-4 NIM: Nilai 7)</strong>
-              <p>Minimal 7 + 2 = 9 case di luar default. Diimplementasikan pada pemilihan <strong>9 Tipe Kamar</strong> (STD, DLX, PRE, EXE, JS, FAM, PS, VIL, ROY) + 1 blok <code>default</code>.</p>
+              <strong>4. Struktur Seleksi `switch...case`</strong>
+              <p>9 case opsi tipe kamar hotel di luar default (Superior Heritage, Deluxe Twin, Premium King, Executive City, Junior Suite, Grand Family, Presidential Suite, Pool Villa, Royal Penthouse) ditambah penanganan fallback <code>default</code>.</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>5. Perulangan `for` (Digit ke-1 NIM: Nilai 9)</strong>
-              <p>Minimal 9 + 3 = 12 iterasi. Diimplementasikan pada modul <strong>Breakdown Kalender Menginap 12 Hari</strong> secara berurutan untuk menghitung kalkulasi tarif harian dan saldo kumulatif.</p>
+              <strong>5. Algoritma Perulangan `for`</strong>
+              <p>12 iterasi loop berurutan untuk menyusun rincian jadwal kalender menginap 12 hari, menghitung tarif harian, surcharge akhir pekan, dan saldo kumulatif tagihan.</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>6. Perulangan `while` (Digit ke-2 NIM: Nilai 2)</strong>
-              <p>Minimal 2 + 2 = 4 iterasi. Diimplementasikan pada modul <strong>Simulasi 4x Angsuran Deposit Bertahap</strong> dengan perhitungan proporsional saldo pembayaran.</p>
+              <strong>6. Algoritma Perulangan `while`</strong>
+              <p>4 iterasi loop simulasi termin angsuran deposit bertahap (pembagian proporsional 25% per termin).</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>7. Perulangan `do...while` (Digit ke-3 NIM: Nilai 5)</strong>
-              <p>Minimal 5 + 1 = 6 iterasi. Diimplementasikan pada modul <strong>Pemeriksaan &amp; Validasi 6 Fasilitas Tambahan (Amenities)</strong> kamar tamu.</p>
+              <strong>7. Algoritma Perulangan `do...while`</strong>
+              <p>6 iterasi loop evaluasi checklist fasilitas tambahan (Sarapan prasmanan, antar-jemput bandara, Wi-Fi ultra cepat, spa tradisional, late check-out, dan ekstra bed ergonomis).</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>8. Struktur `Array` (Digit ke-4 NIM: Nilai 7)</strong>
-              <p>Minimal 7 + 3 = 10 elemen. Diimplementasikan pada <strong>Array Tipe Kamar (10 item katalog)</strong> dan <strong>Array Riwayat Data Reservasi Tamu (10 record awal)</strong>.</p>
+              <strong>8. Struktur Koleksi Data `Array`</strong>
+              <p>Penyimpanan dan manipulasi dataset katalog kamar (10 koleksi kamar) serta buku besar histori reservasi tamu (&ge; 10 record data terintegrasi).</p>
             </div>
           </div>
 
           <div class="audit-item">
             <div class="audit-status-icon success">&check;</div>
             <div class="audit-content">
-              <strong>9. Tantangan Perulangan (Digit ke-3 Terakhir NIM: Nilai 5)</strong>
-              <p>Tantangan: <strong>Menghitung Rata-rata Data</strong>. Diimplementasikan melalui fungsi perulangan untuk menghitung rata-rata biaya menginap, rata-rata durasi tamu, dan rata-rata pengeluaran fasilitas secara dinamis.</p>
+              <strong>9. Algoritma Analisis &amp; Rata-rata Data (Mean Calculation)</strong>
+              <p>Fungsi perulangan agregasi untuk menghitung rata-rata biaya tagihan per reservasi, rata-rata durasi menginap tamu, dan rata-rata pengeluaran fasilitas tambahan secara dinamis.</p>
             </div>
           </div>
 
@@ -681,9 +675,9 @@
   <footer class="app-footer">
     <div class="footer-container">
       <div class="footer-meta">
-        <p class="footer-copy">&copy; 2026 Svarga Heritage Hotel &amp; Resort. Dikembangkan untuk Penugasan Akademik Pemrograman Web 1.</p>
-        <p class="footer-student">
-          Mahasiswa: <strong>Hadi Sulaiman</strong> &bull; NIM: <strong>241011402572</strong> &bull; Kelas: <strong>05TPLM003</strong> &bull; Teknik Informatika S-1, Universitas Pamulang.
+        <p class="footer-copy">&copy; 2026 Svarga Heritage Hotel &amp; Resort. Seluruh hak cipta dilindungi.</p>
+        <p class="footer-desc">
+          Front Office Management System &bull; Layanan Terintegrasi Reservasi, Folio Tamu, dan Analisis Data Harian.
         </p>
       </div>
       <div class="footer-links">
