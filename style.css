@@ -591,6 +591,7 @@ body {
   flex-shrink: 0;
   margin-top: 2px;
   transition: all var(--transition-fast);
+  pointer-events: none;
 }
 
 .checkbox-card input[type="checkbox"]:checked + .checkbox-indicator {
@@ -616,6 +617,7 @@ body {
 .checkbox-info {
   display: flex;
   flex-direction: column;
+  pointer-events: none;
 }
 
 .checkbox-title {
@@ -652,6 +654,7 @@ body {
   position: relative;
   transition: background-color var(--transition-fast);
   flex-shrink: 0;
+  pointer-events: none;
 }
 
 .switch-slider::before {
@@ -678,6 +681,7 @@ body {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--text-primary);
+  pointer-events: none;
 }
 
 /* Alert Component */
