@@ -1500,22 +1500,33 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* --- 12. RESPONSIVE BREAKPOINTS --- */
+/* ==========================================================================
+   BAGIAN 12: RESPONSIVE MEDIA QUERIES (DESKTOP -> TABLET -> MOBILE)
+   ==========================================================================
+   PENJELASAN UNTUK DOSEN:
+   - Media query `@media (max-width: 1080px)` mendeteksi layar tablet/laptop kecil:
+     Mengubah `.reservation-grid` dari 2 kolom menjadi 1 kolom vertikal (`grid-template-columns: 1fr`)
+     agar formulir dan nota tagihan tidak berdesakan.
+     `.folio-card` diubah dari `position: sticky` menjadi `position: static` agar tidak menutupi konten.
+   - Media query `@media (max-width: 768px)` mendeteksi layar ponsel pintar (mobile phone):
+     Mengubah baris formulir `.form-row-2` dan `.form-row-3` menjadi 1 kolom penuh
+     sehingga setiap input dapat diketik dan disentuh dengan mudah oleh jempol pengguna (touch friendly).
+   ========================================================================== */
 @media (max-width: 1080px) {
   .reservation-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Tumpuk formulir dan struk secara vertikal */
   }
   .folio-card {
-    position: static;
+    position: static;           /* Matikan posisi mengambang pada layar sedang */
   }
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 baris x 2 kolom kartu statistik */
   }
 }
 
 @media (max-width: 768px) {
   .header-container {
-    flex-direction: column;
+    flex-direction: column;     /* Susun logo dan identitas mahasiswa secara vertikal */
     align-items: flex-start;
   }
   .header-actions {
@@ -1530,31 +1541,44 @@ body {
     width: 100%;
   }
   .form-row-2, .form-row-3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Input form memenuhi 100% lebar layar ponsel */
   }
   .amenities-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Opsi checkbox fasilitas disusun 1 kolom */
   }
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Kartu statistik disusun vertikal 1 per baris */
   }
   .records-header {
     flex-direction: column;
     align-items: stretch;
   }
   .records-filters {
-    flex-direction: column;
+    flex-direction: column;     /* Input pencarian dan filter kategori ditumpuk */
   }
 }
 
-/* --- 13. PRINT STYLESHEET (CETAK NOTA RESMI GUEST FOLIO) --- */
+/* ==========================================================================
+   BAGIAN 13: PRINT STYLESHEET (ATURAN CETAK DOKUMEN CETAK/PDF)
+   ==========================================================================
+   PENJELASAN UNTUK DOSEN:
+   - Ketika tamu atau dosen menekan tombol "Cetak Struk" atau pintasan Ctrl+P,
+     media query `@media print` akan dieksekusi oleh mesin peramban.
+   - Seluruh elemen antarmuka web yang tidak relevan (seperti navigasi header,
+     banner penjelasan, formulir input, tabel data, modal, dan tombol) disembunyikan
+     secara mutlak menggunakan `display: none !important;`.
+   - Hanya kartu nota tagihan `.folio-card` yang ditampilkan dengan latar belakang putih bersih,
+     warna teks hitam pekat, dan garis batas tegas 2px untuk menghemat tinta printer
+     dan menghasilkan lembaran cetak kwitansi fisik yang formal dan profesional.
+   ========================================================================== */
 @media print {
   body {
-    background-color: #FFFFFF !important;
-    color: #000000 !important;
-    font-size: 12pt;
+    background-color: #FFFFFF !important; /* Latar putih murni tanpa warna kanvas */
+    color: #000000 !important;            /* Teks hitam pekat hemat tinta */
+    font-size: 12pt;                      /* Ukuran standar dokumen cetak fisik */
   }
 
+  /* Sembunyikan seluruh kontrol antarmuka layar */
   .app-header,
   .context-banner,
   .form-card,
@@ -1576,11 +1600,12 @@ body {
     display: block !important;
   }
 
+  /* Nota tagihan sebagai satu-satunya dokumen yang dicetak */
   .folio-card {
     border: 2px solid #000000 !important;
     box-shadow: none !important;
     max-width: 100% !important;
-    page-break-inside: avoid;
+    page-break-inside: avoid;             /* Cegah nota terpotong di tengah halaman cetak */
     background-color: #FFFFFF !important;
   }
 
