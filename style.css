@@ -818,13 +818,30 @@ body {
   padding-top: var(--space-2);
 }
 
-/* --- 7. RIGHT COLUMN: LIVE GUEST FOLIO / BILL BREAKDOWN --- */
+/* ==========================================================================
+   BAGIAN 7: GUEST FOLIO & LIVE BILL BREAKDOWN (KLASIK KWITANSI HOTEL)
+   ==========================================================================
+   PENJELASAN UNTUK DOSEN:
+   - Panel struk `.folio-card` menerapkan `position: sticky; top: 96px;`:
+     Saat pengguna menggulir halaman ke bawah untuk melihat tabel data tamu,
+     kartu struk tagihan akan tetap mengambang (sticky) di samping formulir
+     sehingga tamu selalu dapat memantau akumulasi biaya secara langsung (live billing).
+   - REKAYASA STEMPEL RESMI HOTEL (.folio-stamp):
+     Menggunakan `position: absolute; right: 24px; top: 24px;` dengan border tebal 2px.
+     Efek stempel miring yang otentik diciptakan menggunakan transformasi CSS:
+     `transform: rotate(-4deg);`. Saat reservasi berhasil dihitung dan divalidasi,
+     JavaScript menambahkan kelas `.confirmed` yang mengubah warna stempel menjadi
+     hijau resmi dengan latar transparan halus (rgba(27, 94, 56, 0.05)).
+   - PEMBATAS PERFORASI STRUK:
+     1. `.folio-divider-dashed`: `border-top: 1px dashed` menyerupai garis sobekan kertas.
+     2. `.folio-divider-double`: `border-top: 3px double` gaya akuntansi tradisional sebelum total akhir.
+   ========================================================================== */
 .folio-card {
   background-color: var(--bg-folio);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
-  position: sticky;
+  position: sticky;             /* Tetap melayang di posisi 96px dari atas layar */
   top: 96px;
 }
 
@@ -837,6 +854,7 @@ body {
   position: relative;
 }
 
+/* Stempel Fisik Dokumen Hotel */
 .folio-stamp {
   position: absolute;
   right: var(--space-6);
@@ -849,8 +867,8 @@ body {
   padding: 4px 8px;
   text-transform: uppercase;
   border-radius: var(--radius-sm);
-  transform: rotate(-4deg);
-  pointer-events: none;
+  transform: rotate(-4deg);      /* Rotasi miring 4 derajat meniru stempel manual */
+  pointer-events: none;          /* Klik tembus ke elemen di bawah stempel */
   transition: all var(--transition-normal);
 }
 
@@ -889,17 +907,20 @@ body {
   margin-top: 4px;
 }
 
+/* Pembatas Garis Solid */
 .folio-divider {
   height: 2px;
   background-color: var(--border-strong);
   margin: 0 var(--space-6);
 }
 
+/* Garis Putus-putus Perforasi Kertas */
 .folio-divider-dashed {
   border-top: 1px dashed var(--border-dashed);
   margin: var(--space-3) 0;
 }
 
+/* Garis Ganda Akuntansi Standar Keuangan */
 .folio-divider-double {
   border-top: 3px double var(--border-strong);
   margin: var(--space-4) 0;
@@ -944,6 +965,7 @@ body {
   font-size: 0.75rem;
 }
 
+/* Kotak Total Tagihan Utama */
 .folio-total-box {
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-subtle);
@@ -985,7 +1007,7 @@ body {
   padding-top: var(--space-2);
 }
 
-/* Installment Cicilan Box (While Loop Output) */
+/* Kotak Simulasi Cicilan Angsuran (Hasil Loop WHILE 4 Iterasi) */
 .folio-installment-box {
   background-color: #FAF6F0;
   border: 1px solid var(--border-strong);
