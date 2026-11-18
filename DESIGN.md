@@ -1,6 +1,6 @@
 # Design System: Svarga Heritage Hotel & Resort
 
-Dokumentasi sistem desain antarmuka aplikasi Sistem Reservasi Hotel (*Hotel Reservation & Guest Billing System*) yang disusun berdasarkan prinsip **Frontend Design Distinction**, **Impeccable Operability**, dan **Unslop Craft Hygiene**.
+Dokumentasi sistem desain antarmuka aplikasi Sistem Reservasi Hotel (*Hotel Reservation & Guest Billing System*) yang disusun berdasarkan prinsip desain antarmuka yang bersih, konsisten, berkarakter profesional, dan berorientasi pada kemudahan pengguna.
 
 ---
 
@@ -74,8 +74,8 @@ Semua jarak margin, padding, dan gap menggunakan kelipatan 4px:
 
 ---
 
-## 5. Kaidah Anti-Slop & Craftsmanship
-1. **Bebas Gradien & Glow Murahan :** Tidak ada efek gradien neon, bayangan ungu, maupun teks bersinar (*no glows, no gradient text*).
+## 5. Standar Rekayasa & Estetika Antarmuka
+1. **Pewarnaan Bersih & Terarah :** Tidak menggunakan efek gradien berlebihan atau teks bersinar agar kontras tetap nyaman dibaca.
 2. **Ikonografi Vektor Murni :** Seluruh ikon menggunakan SVG inline berskala 16px/20px dengan ketebalan garis konsisten (1.5px/2px), tanpa emoji di judul tombol atau label formulir.
 3. **Format Angka Tabular :** Setiap nominal harga disajikan dalam standar Rupiah yang konsisten (`Rp 1.500.000`) dengan fitur penyelarasan rata kanan pada kolom tabel angka.
 4. **Validasi & Penanganan Status Nyata :** Formulir dilengkapi pesan galat kontekstual dan tabel memiliki status *empty state* yang informatif.
