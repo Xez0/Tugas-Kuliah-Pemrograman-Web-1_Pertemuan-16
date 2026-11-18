@@ -1,0 +1,25 @@
+name: Kepatuhan Spesifikasi Penugasan NIM
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  verify-nim-specs:
+    name: Verifikasi Aturan NIM 241011402572
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repositori
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Eksekusi Pengujian Otomatis Spesifikasi NIM
+        run: |
+          node test_specs.js
