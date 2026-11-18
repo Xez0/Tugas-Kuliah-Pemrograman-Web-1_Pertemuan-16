@@ -2,7 +2,7 @@
    SVARGA HERITAGE HOTEL & RESORT - DESIGN SYSTEM STYLESHEET
    Mata Kuliah : Pemrograman Web 1 (Pertemuan 16)
    Mahasiswa   : Hadi Sulaiman (NIM: 241011402572)
-   Prinsip     : Anti-Slop Discipline, Impeccable Craft, & Editorial Distinction
+   Kelas       : 05TPLM003
    ========================================================================== */
 
 /* ==========================================================================
@@ -29,8 +29,8 @@
   --bg-folio: #FFFDF9;        /* Latar nota struk menyerupai kertas kwitansi hotel */
 
   /* --- GARIS PEMBATAS (HAIRLINE BORDERS) ---
-     Berdasarkan standar anti-slop, pembatas menggunakan garis halus 1px bernuansa
-     netral agar memisahkan informasi tanpa menimbulkan polusi visual. */
+     Pembatas menggunakan garis halus 1px bernuansa netral agar
+     memisahkan informasi secara rapi, bersih, dan terstruktur. */
   --border-subtle: #E7E1D8;   /* Garis halus pembatas antar baris data */
   --border-strong: #D2C8BA;   /* Garis pembatas kartu dan fieldset utama */
   --border-dashed: #C7BCAB;   /* Garis putus-putus untuk perforasi struk nota */
