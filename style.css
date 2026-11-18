@@ -110,45 +110,66 @@
   --transition-normal: 220ms ease;
 }
 
-/* --- 2. CSS RESET & GLOBAL BASE --- */
+/* ==========================================================================
+   BAGIAN 2: CSS RESET, BOX-SIZING & BASE TYPOGRAPHY
+   ==========================================================================
+   PENJELASAN UNTUK DOSEN:
+   - Default browser memasang margin/padding bawaan pada tag <h1>, <p>, <ul>, dsb.
+     yang berbeda-beda antara Chrome, Firefox, dan Safari.
+   - Selector universal `*, *::before, *::after` mereset margin dan padding menjadi 0
+     agar tampilan konsisten di semua peramban (cross-browser compatibility).
+   - Properti `box-sizing: border-box` sangat krusial:
+     Jika sebuah kotak memiliki width: 300px, padding: 20px, dan border: 2px,
+     total lebar kotak tetap 300px (padding dan border berada di dalam kotak),
+     bukan 344px seperti pada model box bawaan (content-box).
+   ========================================================================== */
 *, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box; /* Padding dan border tidak menambah total lebar elemen */
+  margin: 0;              /* Hapus margin liar bawaan browser */
+  padding: 0;             /* Hapus padding liar bawaan browser */
 }
 
 html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+  font-size: 16px;                     /* Basis ukuran font (1rem = 16px) */
+  scroll-behavior: smooth;             /* Efek transisi halus saat anchor link diklik */
+  -webkit-text-size-adjust: 100%;      /* Cegah browser ponsel memperbesar teks sembarangan */
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-canvas);
-  color: var(--text-primary);
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-sans);       /* Tipografi default menggunakan Plus Jakarta Sans */
+  background-color: var(--bg-canvas);  /* Mengambil warna canvas #FBF9F5 dari :root */
+  color: var(--text-primary);          /* Teks utama #181A1C untuk ketajaman visual */
+  line-height: 1.6;                    /* Jarak baris proporsional untuk keterbacaan tinggi */
+  min-height: 100vh;                   /* Memastikan tinggi body setidaknya 100% tinggi layar */
+  display: flex;                       /* Menggunakan Flexbox pada body */
+  flex-direction: column;              /* Mengatur urutan vertikal: Header -> Main -> Footer */
+  text-rendering: optimizeLegibility;  /* Mengoptimalkan kerning dan ligatur teks */
+  -webkit-font-smoothing: antialiased; /* Antialiasing teks pada browser berbasis WebKit */
+  -moz-osx-font-smoothing: grayscale;  /* Antialiasing teks pada macOS Firefox */
 }
 
-/* Tabular figures for data and numbers */
+/* --- KELAS TABULAR NUMBERS (JETBRAINS MONO) ---
+   PENJELASAN UNTUK DOSEN:
+   - Properti `font-variant-numeric: tabular-nums` membuat setiap angka (0-9)
+     memiliki lebar fisik yang persis sama (monospaced numbers).
+   - Hal ini membuat kolom nominal Rupiah dan angka pada tabel tersusun lurus
+     secara vertikal tanpa ada pergeseran digit yang berantakan. */
 .font-mono {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
 
-/* Helper Utilities */
-.d-none { display: none !important; }
-.text-danger { color: var(--status-danger-text) !important; }
-.text-success { color: var(--status-success-text) !important; }
-.text-muted { color: var(--text-muted) !important; }
+/* --- KELAS BANTU UTILITAS UMUM --- */
+.d-none { display: none !important; } /* Sembunyikan elemen secara absolut dari layar */
+.text-danger { color: var(--status-danger-text) !important; }   /* Penanda angka minus / diskon */
+.text-success { color: var(--status-success-text) !important; } /* Penanda status sukses / lunas */
+.text-muted { color: var(--text-muted) !important; }             /* Teks redup pendukung */
 
-/* Focus styles for keyboard accessibility */
+/* --- AKSESIBILITAS: FOCUS VISIBLE UNTUK PENGGUNA KEYBOARD (WCAG 2.1) ---
+   PENJELASAN UNTUK DOSEN:
+   - Saat pengguna menavigasi form menggunakan tombol Tab keyboard,
+     lingkaran fokus (ring) 2px warna terracotta akan muncul dengan jelas
+     agar pengguna tahu posisi kursor tanpa merusak estetika klik mouse biasa. */
 :focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 2px;
